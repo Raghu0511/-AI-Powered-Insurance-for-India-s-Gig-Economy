@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gig Worker Insurance Prototype</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>AI-Powered Insurance Prototype</h1>
+
+    <!-- Registration -->
+    <section id="registration">
+        <h2>Register</h2>
+        <input type="text" id="name" placeholder="Your Name">
+        <select id="platform">
+            <option value="zomato">Zomato</option>
+            <option value="swiggy">Swiggy</option>
+            <option value="amazon">Amazon</option>
+        </select>
+        <select id="zone">
+            <option value="low">Low Risk Zone</option>
+            <option value="medium">Medium Risk Zone</option>
+            <option value="high">High Risk Zone</option>
+        </select>
+        <button onclick="register()">Register</button>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" style="display:none;">
+        <h2>Dashboard</h2>
+        <p id="welcome"></p>
+        <p id="coverage">Coverage: Active</p>
+        <p id="premium">Weekly Premium: ₹0</p>
+        <p id="riskScore">Risk Score: 0</p>
+        <p id="payout">Payout: ₹0</p>
+
+        <h3>Trigger Parametric Events</h3>
+        <button onclick="triggerEvent('rain')">Heavy Rain</button>
+        <button onclick="triggerEvent('heat')">Extreme Heat</button>
+        <button onclick="triggerEvent('outage')">Platform Outage</button>
+        <button onclick="triggerEvent('curfew')">Curfew / Zone Restriction</button>
+
+        <h3>Cumulative Payouts</h3>
+        <canvas id="payoutChart" width="400" height="200"></canvas>
+    </section>
+</body>
+<script src="script.js"></script>
+</html>
