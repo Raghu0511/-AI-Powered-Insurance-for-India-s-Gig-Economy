@@ -1,4 +1,4 @@
-# AI Powered Insurance for India's Gig Economy
+# AI Powered Insurance for India's Food Delivery Workers
 
 Food delivery workers form a major part of the gig economy and rely on daily, activity-based earnings rather than fixed salaries. Their income is directly tied to the number of deliveries they complete within a given time.
  
