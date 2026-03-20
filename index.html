@@ -8,43 +8,54 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>AI-Powered Insurance Prototype</h1>
+    <div class="container">
+        <!-- Registration/Login -->
+        <section id="registration" class="card">
+            <h1>AI-Powered Insurance</h1>
+            <p>Protect your earnings from uncontrollable disruptions</p>
+            <input type="text" id="name" placeholder="Full Name">
+            <select id="platform">
+                <option value="zomato">Zomato</option>
+                <option value="swiggy">Swiggy</option>
+                <option value="amazon">Amazon</option>
+            </select>
+            <select id="zone">
+                <option value="low">Low Risk Zone</option>
+                <option value="medium">Medium Risk Zone</option>
+                <option value="high">High Risk Zone</option>
+            </select>
+            <button onclick="register()">Register</button>
+        </section>
 
-    <!-- Registration -->
-    <section id="registration">
-        <h2>Register</h2>
-        <input type="text" id="name" placeholder="Your Name">
-        <select id="platform">
-            <option value="zomato">Zomato</option>
-            <option value="swiggy">Swiggy</option>
-            <option value="amazon">Amazon</option>
-        </select>
-        <select id="zone">
-            <option value="low">Low Risk Zone</option>
-            <option value="medium">Medium Risk Zone</option>
-            <option value="high">High Risk Zone</option>
-        </select>
-        <button onclick="register()">Register</button>
-    </section>
+        <!-- Dashboard -->
+        <section id="dashboard" class="card" style="display:none;">
+            <div class="header">
+                <h1>Dashboard</h1>
+                <p id="welcome"></p>
+            </div>
+            <div class="metrics">
+                <p id="coverage">Coverage: Active</p>
+                <p id="premium">Weekly Premium: ₹0</p>
+                <p id="riskScore">Risk Score: 0</p>
+                <p id="payout">Payout: ₹0</p>
+            </div>
 
-    <!-- Dashboard -->
-    <section id="dashboard" style="display:none;">
-        <h2>Dashboard</h2>
-        <p id="welcome"></p>
-        <p id="coverage">Coverage: Active</p>
-        <p id="premium">Weekly Premium: ₹0</p>
-        <p id="riskScore">Risk Score: 0</p>
-        <p id="payout">Payout: ₹0</p>
+            <div class="chart-section">
+                <h3>Cumulative Payouts</h3>
+                <canvas id="payoutChart" width="400" height="200"></canvas>
+            </div>
 
-        <h3>Trigger Parametric Events</h3>
-        <button onclick="triggerEvent('rain')">Heavy Rain</button>
-        <button onclick="triggerEvent('heat')">Extreme Heat</button>
-        <button onclick="triggerEvent('outage')">Platform Outage</button>
-        <button onclick="triggerEvent('curfew')">Curfew / Zone Restriction</button>
+            <!-- Hidden corner trigger panel -->
+            <div class="trigger-panel">
+                <h4>Parametric Triggers</h4>
+                <button onclick="triggerEvent('rain')">Heavy Rain</button>
+                <button onclick="triggerEvent('heat')">Extreme Heat</button>
+                <button onclick="triggerEvent('outage')">Platform Outage</button>
+                <button onclick="triggerEvent('curfew')">Curfew</button>
+            </div>
+        </section>
+    </div>
 
-        <h3>Cumulative Payouts</h3>
-        <canvas id="payoutChart" width="400" height="200"></canvas>
-    </section>
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
