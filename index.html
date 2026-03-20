@@ -17,12 +17,16 @@
             <select id="platform">
                 <option value="zomato">Zomato</option>
                 <option value="swiggy">Swiggy</option>
-                <option value="amazon">Amazon</option>
             </select>
             <select id="zone">
-                <option value="low">Low Risk Zone</option>
-                <option value="medium">Medium Risk Zone</option>
-                <option value="high">High Risk Zone</option>
+                <option value="zone1">Zone 1 (High Risk)</option>
+                <option value="zone2">Zone 2 (High Risk)</option>
+                <option value="zone3">Zone 3 (Medium Risk)</option>
+                <option value="zone4">Zone 4 (Medium Risk)</option>
+                <option value="zone5">Zone 5 (Low Risk)</option>
+                <option value="zone6">Zone 6 (Low Risk)</option>
+                <option value="zone7">Zone 7 (Medium Risk)</option>
+                <option value="zone8">Zone 8 (High Risk)</option>
             </select>
             <button onclick="register()">Register</button>
         </section>
@@ -33,6 +37,24 @@
                 <h1>Dashboard</h1>
                 <p id="welcome"></p>
             </div>
+
+            <!-- Insurance Plans -->
+            <div class="plans">
+                <h3>Choose Your Weekly Plan</h3>
+                <div class="plan-card">
+                    <h4>Basic Plan</h4>
+                    <p>Coverage: 50% of potential income loss</p>
+                    <p>Weekly Premium: ₹50</p>
+                    <button onclick="selectPlan('Basic')">Select Plan</button>
+                </div>
+                <div class="plan-card">
+                    <h4>Premium Plan</h4>
+                    <p>Coverage: 100% of potential income loss</p>
+                    <p>Weekly Premium: ₹100</p>
+                    <button onclick="selectPlan('Premium')">Select Plan</button>
+                </div>
+            </div>
+
             <div class="metrics">
                 <p id="coverage">Coverage: Active</p>
                 <p id="premium">Weekly Premium: ₹0</p>
@@ -45,8 +67,8 @@
                 <canvas id="payoutChart" width="400" height="200"></canvas>
             </div>
 
-            <!-- Hidden corner trigger panel -->
-            <div class="trigger-panel">
+            <!-- Corner Trigger Panel -->
+            <div class="trigger-panel" id="triggerPanel">
                 <h4>Parametric Triggers</h4>
                 <button onclick="triggerEvent('rain')">Heavy Rain</button>
                 <button onclick="triggerEvent('heat')">Extreme Heat</button>
