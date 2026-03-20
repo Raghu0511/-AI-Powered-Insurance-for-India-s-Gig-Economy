@@ -146,3 +146,28 @@ This helps calculate accurate payouts while respecting daily and weekly limits.
 
 **Overall Impact:**  
 AI/ML enables fair, automated, and data-driven insurance decisions, supporting dynamic premium calculation, precise income loss estimation, and robust fraud prevention.
+
+## Adversarial Defense & Anti-Spoofing Strategy
+
+Simple GPS verification fails against Telegram-organized GPS-spoofing syndicates. We use **behavioral signals** for multi-layered detection of coordinated fraud rings faking weather strandings from home.
+
+### 1. Differentiation
+**Real riders** show normal trip patterns and GPS matches IP location. **Spoofers** trigger alerts when:  
+- Historical trip patterns suddenly deviate from 6-month baselines  
+- IP address shows safe home zone while GPS claims red-alert area  
+- Multiple claims share identical device fingerprints or network patterns  
+
+### 2. The Data  
+**Behavioral signals:**  
+- Historical trip patterns (sudden deviation from rider baselines)  
+- IP-GPS mismatch (home IP vs. claimed red-alert GPS)  
+- Device fingerprints (shared Android IDs across claims)  
+- Network metadata (Telegram-like data bursts from clustered devices)  
+
+Cross-checked with order history (no active deliveries) + peer density (50+ claims from one pincode).  
+
+### 3. UX Balance
+Flagged claims get **instant chat**: "Send current order screenshot."  
+- Honest workers: verified in <5 mins, full payout  
+- Suspicious patterns: held for manual review  
+- **No penalties** for genuine riders, with one-tap appeal button
