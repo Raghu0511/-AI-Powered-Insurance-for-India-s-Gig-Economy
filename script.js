@@ -1,7 +1,4 @@
-// ═══════════════════════════════════════════════════════════
-//  ZONE DATA & CONSTANTS
-// ═══════════════════════════════════════════════════════════
-const zones = {
+ const zones = {
   koramangala: { risk: 72, label: 'High',   city: 'Bengaluru', avgRain: 18, avgTemp: 34, traffic: 'High' },
   indiranagar: { risk: 55, label: 'Medium', city: 'Bengaluru', avgRain: 12, avgTemp: 32, traffic: 'Moderate' },
   whitefield:  { risk: 40, label: 'Low',    city: 'Bengaluru', avgRain: 8,  avgTemp: 30, traffic: 'Low' },
