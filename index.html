@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>We'll Take Care Macha — AI Insurance for Delivery Heroes</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -22,8 +20,384 @@
   </div>
 </nav>
 
-<!-- KEEP ALL YOUR ORIGINAL HTML CONTENT HERE EXACTLY (UNCHANGED) -->
+<!-- ══════════════════ HOME PAGE ══════════════════ -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="hero-badge">India's first AI-powered gig insurance</div>
+    <h1>You deliver the food.<br>We deliver the <span class="accent">safety net.</span></h1>
+    <p class="hero-sub">Automatic income protection for delivery partners. No claims, no paperwork, no waiting — payouts drop the second disruptions hit.</p>
+    <p class="hero-pun">Because your Zomato app may crash, but your rent won't. 😅</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="goto('register')">Get covered, macha 🛡️</button>
+      <button class="btn-secondary" onclick="goto('dashboard')">View dashboard</button>
+    </div>
+  </div>
 
+  <div class="section">
+    <div class="section-title">How it works</div>
+    <div class="section-sub">Four steps. Even your phone's low battery won't stop it.</div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Sign up &amp; pick your zone</h3>
+        <p>Register with your delivery zone and platform. Faster than waiting for a Swiggy OTP.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>AI calculates your premium</h3>
+        <p>Risk score computed from your zone's rain, traffic, heat &amp; outage history. Not vibes.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>We monitor 24/7</h3>
+        <p>Live checks every 5 seconds. Our servers don't take lunch breaks or suffer sunstroke.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h3>Auto payout — no claim needed</h3>
+        <p>Disruption hits → system verifies you're active → money lands. You didn't even have to ask.</p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-title">Covered for every disruption</div>
+    <div class="section-sub">Parametric triggers — objective, transparent, instant. No "we'll look into it."</div>
+    <div class="scenarios">
+      <div class="scenario-card">
+        <div class="scenario-icon">🌧️</div>
+        <h3>Heavy rainfall</h3>
+        <p>Unsafe roads, zero orders. We detect crossing safe thresholds and compensate — no drenched delivery guy required to prove it rained.</p>
+        <span class="scenario-tag">Auto-trigger</span>
+      </div>
+      <div class="scenario-card heat">
+        <div class="scenario-icon">🌡️</div>
+        <h3>Extreme heat</h3>
+        <p>Working in 44°C deserves combat pay. Partial payouts protect your reduced hours. Sunscreen not included, sadly.</p>
+        <span class="scenario-tag">Auto-trigger</span>
+      </div>
+      <div class="scenario-card outage">
+        <div class="scenario-icon">📡</div>
+        <h3>Platform outage</h3>
+        <p>When Zomato or Swiggy goes poof, you still get paid for being ready. Sitting idle is now a paid activity. (Terms apply.)</p>
+        <span class="scenario-tag">Auto-trigger</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ REGISTER PAGE ══════════════════ -->
+<div id="register" class="page">
+  <div class="section">
+    <div class="form-card">
+      <div class="form-title">Join We'll Take Care Macha</div>
+      <div class="form-subtitle">Coverage in under 2 minutes. No ID proof, no three calls from an agent 🙌</div>
+
+      <div class="form-group">
+        <label>Full name</label>
+        <input type="text" id="reg-name" placeholder="e.g. Ravi Kumar" oninput="updateRisk()">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone number</label>
+          <input type="tel" id="reg-phone" placeholder="+91 98765 43210">
+        </div>
+        <div class="form-group">
+          <label>Platform</label>
+          <select id="reg-platform" onchange="updateRisk()">
+            <option value="">Select platform</option>
+            <option value="zomato">Zomato</option>
+            <option value="swiggy">Swiggy</option>
+            <option value="zepto">Zepto</option>
+            <option value="blinkit">Blinkit</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Working zone</label>
+        <select id="reg-zone" onchange="updateRisk()">
+          <option value="">Select your zone</option>
+          <option value="koramangala">Koramangala, Bengaluru</option>
+          <option value="indiranagar">Indiranagar, Bengaluru</option>
+          <option value="whitefield">Whitefield, Bengaluru</option>
+          <option value="bandra">Bandra, Mumbai</option>
+          <option value="andheri">Andheri, Mumbai</option>
+          <option value="connaught">Connaught Place, Delhi</option>
+          <option value="gurgaon">Gurgaon, Delhi NCR</option>
+        </select>
+      </div>
+
+      <div class="risk-display" id="risk-display">
+        <div class="risk-bar-label">
+          <span>AI Risk Score</span>
+          <span id="risk-label" style="color:var(--brand);font-weight:800">—</span>
+        </div>
+        <div class="risk-bar"><div class="risk-fill" id="risk-fill" style="width:0%"></div></div>
+        <div class="risk-inputs" id="risk-inputs">
+          <div class="risk-input-item">
+            <div class="ri-label">Avg Rain</div>
+            <div class="ri-val" id="ri-rain" style="color:var(--blue)">—</div>
+          </div>
+          <div class="risk-input-item">
+            <div class="ri-label">Avg Temp</div>
+            <div class="ri-val" id="ri-temp" style="color:var(--amber)">—</div>
+          </div>
+          <div class="risk-input-item">
+            <div class="ri-label">Traffic</div>
+            <div class="ri-val" id="ri-traffic" style="color:var(--brand)">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size:12px;font-weight:700;color:var(--text-secondary);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px">Choose your plan</div>
+      <div class="plan-cards">
+        <div class="plan-card" id="plan-basic" onclick="selectPlan('basic')">
+          <h4>Basic</h4>
+          <div class="price" id="basic-price">₹49 <span>/ week</span></div>
+          <p>Rain &amp; heat triggers. Up to ₹300/day payout.</p>
+        </div>
+        <div class="plan-card selected" id="plan-premium" onclick="selectPlan('premium')">
+          <div class="plan-badge">Popular</div>
+          <h4>Premium</h4>
+          <div class="price" id="premium-price">₹89 <span>/ week</span></div>
+          <p>All triggers incl. outages &amp; curfews. Up to ₹600/day.</p>
+        </div>
+      </div>
+
+      <button class="btn-primary" style="width:100%;margin-top:1rem" onclick="activatePlan()">Activate coverage 🚀</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ DASHBOARD PAGE ══════════════════ -->
+<div id="dashboard" class="page">
+  <div class="dash-header">
+    <div class="dash-avatar" id="dash-avatar">?</div>
+    <div>
+      <div class="dash-name" id="dash-name">Not registered yet</div>
+      <div class="dash-zone" id="dash-zone">Register to get started</div>
+    </div>
+    <span class="status-pill status-inactive" id="dash-status">Inactive</span>
+  </div>
+
+  <div class="section" style="padding-top:1.5rem">
+
+    <!-- Policy countdown -->
+    <div id="policy-countdown-wrap" style="display:none">
+      <div class="policy-countdown active" id="policy-countdown">
+        <div>
+          <div class="pc-label">Policy expires in</div>
+          <div class="pc-time" id="policy-time">7d 0h 0m</div>
+        </div>
+        <div style="font-size:20px">⏱️</div>
+      </div>
+    </div>
+
+    <!-- Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="m-label">This week earned</div>
+        <div class="m-val" id="dash-earned">₹0</div>
+        <div class="m-sub">in payouts</div>
+      </div>
+      <div class="metric-card">
+        <div class="m-label">Coverage days left</div>
+        <div class="m-val" id="dash-days">—</div>
+        <div class="m-sub" id="dash-plan-label">No active plan</div>
+      </div>
+      <div class="metric-card">
+        <div class="m-label">Disruptions caught</div>
+        <div class="m-val" id="dash-disruptions">0</div>
+        <div class="m-sub">this week</div>
+      </div>
+      <div class="metric-card">
+        <div class="m-label">Daily limit</div>
+        <div class="m-val" id="dash-limit">—</div>
+        <div class="m-sub">max payout</div>
+      </div>
+    </div>
+
+    <!-- Coverage bar -->
+    <div style="font-size:12px;font-weight:700;margin-bottom:6px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.5px">Weekly coverage progress</div>
+    <div class="coverage-bar-wrap">
+      <div class="coverage-bar"><div class="coverage-fill" id="coverage-fill" style="width:0%"></div></div>
+      <div class="coverage-label"><span>Day 1</span><span id="cov-day-label">—</span><span>Day 7</span></div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Live conditions -->
+    <div class="monitor-card">
+      <div class="monitor-header">
+        <div class="monitor-title">Live conditions — your zone</div>
+        <div><span class="live-dot"></span><span class="live-label">Auto-polling every 5s</span></div>
+      </div>
+      <div class="condition-row">
+        <div class="cond-icon">🌧️</div>
+        <div class="cond-name">Rainfall</div>
+        <div class="cond-val" id="cond-rain">— mm/hr</div>
+        <div class="cond-status cond-ok" id="cond-rain-s">Normal</div>
+      </div>
+      <div class="condition-row">
+        <div class="cond-icon">🌡️</div>
+        <div class="cond-name">Temperature</div>
+        <div class="cond-val" id="cond-temp">—°C</div>
+        <div class="cond-status cond-ok" id="cond-temp-s">Normal</div>
+      </div>
+      <div class="condition-row">
+        <div class="cond-icon">🚦</div>
+        <div class="cond-name">Traffic index</div>
+        <div class="cond-val" id="cond-traffic">—</div>
+        <div class="cond-status cond-ok" id="cond-traffic-s">Clear</div>
+      </div>
+      <div class="condition-row">
+        <div class="cond-icon">📡</div>
+        <div class="cond-name">Platform status</div>
+        <div class="cond-val" id="cond-platform">Online</div>
+        <div class="cond-status cond-ok" id="cond-platform-s">OK</div>
+      </div>
+      <div class="condition-row">
+        <div class="cond-icon">👁️</div>
+        <div class="cond-name">User activity</div>
+        <div class="cond-val" id="cond-activity">Checking...</div>
+        <div class="cond-status cond-ok" id="cond-activity-s">—</div>
+      </div>
+    </div>
+
+    <!-- Claims pipeline -->
+    <div class="auto-badge">Fully automated claims pipeline</div>
+    <div class="pipeline" id="pipeline-viz">
+      <div class="pipeline-title">Active claim processing</div>
+      <div class="pipeline-steps" id="pipeline-steps">
+        <div class="pipeline-step">
+          <div class="pipe-dot" id="pipe-0">🔍</div>
+          <div class="pipe-label">Detect<br>Trigger</div>
+        </div>
+        <div class="pipe-arrow" id="arrow-0">→</div>
+        <div class="pipeline-step">
+          <div class="pipe-dot" id="pipe-1">👤</div>
+          <div class="pipe-label">Verify<br>User</div>
+        </div>
+        <div class="pipe-arrow" id="arrow-1">→</div>
+        <div class="pipeline-step">
+          <div class="pipe-dot" id="pipe-2">📊</div>
+          <div class="pipe-label">Estimate<br>Loss</div>
+        </div>
+        <div class="pipe-arrow" id="arrow-2">→</div>
+        <div class="pipeline-step">
+          <div class="pipe-dot" id="pipe-3">💸</div>
+          <div class="pipe-label">Process<br>Payout</div>
+        </div>
+        <div class="pipe-arrow" id="arrow-3">→</div>
+        <div class="pipeline-step">
+          <div class="pipe-dot" id="pipe-4">✅</div>
+          <div class="pipe-label">Credited</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manual trigger simulator -->
+    <div style="font-size:13px;font-weight:700;margin-bottom:4px">Manual trigger simulator</div>
+    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">Or just wait — auto-detection fires on its own when thresholds cross 😎</div>
+    <div class="sim-grid">
+      <button class="sim-card" onclick="manualTrigger('rain', this)">
+        <div class="s-icon">🌧️</div>
+        <div class="s-name">Heavy rain</div>
+        <div class="s-desc">25mm/hr threshold</div>
+      </button>
+      <button class="sim-card" onclick="manualTrigger('heat', this)">
+        <div class="s-icon">☀️</div>
+        <div class="s-name">Extreme heat</div>
+        <div class="s-desc">Temp &gt; 42°C</div>
+      </button>
+      <button class="sim-card" onclick="manualTrigger('outage', this)">
+        <div class="s-icon">📡</div>
+        <div class="s-name">Platform outage</div>
+        <div class="s-desc">Server down</div>
+      </button>
+      <button class="sim-card" onclick="manualTrigger('curfew', this)">
+        <div class="s-icon">🚫</div>
+        <div class="s-name">Area curfew</div>
+        <div class="s-desc">Zone restriction</div>
+      </button>
+    </div>
+
+    <!-- Payout feed -->
+    <div class="monitor-card">
+      <div class="monitor-header">
+        <div class="monitor-title">Payout history</div>
+        <div style="font-size:11px;color:var(--text-secondary)">Persisted in localStorage 💾</div>
+      </div>
+      <div id="payout-feed">
+        <div class="empty-state">
+          <div class="e-icon">💸</div>
+          <div>No payouts yet — conditions will auto-trigger or simulate above</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ADMIN PAGE ══════════════════ -->
+<div id="admin" class="page">
+  <div class="section">
+    <div class="section-title">Admin panel</div>
+    <div class="section-sub">Platform overview and risk monitoring</div>
+
+    <div class="admin-stats">
+      <div class="admin-stat">
+        <div class="as-label">Active policies</div>
+        <div class="as-val" id="admin-policies">0</div>
+        <div class="as-change as-up" id="admin-pol-change">—</div>
+      </div>
+      <div class="admin-stat">
+        <div class="as-label">Total payouts</div>
+        <div class="as-val" id="admin-total-payouts">₹0</div>
+        <div class="as-change as-up">this week</div>
+      </div>
+      <div class="admin-stat">
+        <div class="as-label">Auto-triggered</div>
+        <div class="as-val" id="admin-auto-count">0</div>
+        <div class="as-change" style="color:var(--teal)">AI-detected</div>
+      </div>
+      <div class="admin-stat">
+        <div class="as-label">Avg risk score</div>
+        <div class="as-val" id="admin-risk">—</div>
+        <div class="as-change" id="admin-risk-change" style="color:var(--text-secondary)">No data yet</div>
+      </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;margin-bottom:12px">Registered workers</div>
+    <div class="table-wrap">
+      <table id="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Zone</th>
+            <th>Plan</th>
+            <th>Risk Score</th>
+            <th>Status</th>
+            <th>Payouts</th>
+          </tr>
+        </thead>
+        <tbody id="admin-tbody">
+          <tr>
+            <td colspan="6" style="text-align:center;color:var(--text-secondary);padding:1.5rem">
+              No registered workers yet
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div style="font-size:13px;font-weight:700;margin-bottom:12px">Zone risk heatmap</div>
+    <div id="zone-heatmap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px"></div>
+  </div>
+</div>
+
+<!-- Toast -->
 <div id="toast"></div>
 
 <script src="script.js"></script>
